@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'app/controllers/pages_controller'
 
 describe PagesController do
 

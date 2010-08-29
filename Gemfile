@@ -10,6 +10,7 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 group :development, :test do
   gem 'rspec-rails', '>= 2.0.0.beta.20'
   gem 'capybara'
+  gem 'annotate-models', '1.0.4'
 end
 
 #group :test do

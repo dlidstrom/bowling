@@ -5,13 +5,13 @@ describe UsersController do
 
   describe "GET '/users/new'" do
     it "should be successful" do
-      visit '/users/new'
-      page.status_code.should == 200
+      get :new
+      response.should be_successful
     end
 
     it "should have the right title" do
-      visit '/users/new'
-      page.should have_css("title", :text => "Sign up")
+      get :new
+      response.should have_selector("title", :content => "Sign up")
     end
   end
   
@@ -32,12 +32,12 @@ describe UsersController do
 
       it "should have the right title" do
         post :create, :user => @attr
-        page.should have_css("title", :text => "Sign up")
+        response.should have_selector("title", :content => "Sign up")
       end
       
       it "should render the 'new' page" do
         post :create, :user => @attr
-        page.should render_template('new')
+        response.should render_template('new')
       end
       
     end
@@ -57,7 +57,7 @@ describe UsersController do
       
       it "should redirect to the user show page" do
         post :create, :user => @attr
-        page.should redirect_to(user_path(assigns(:user)))
+        response.should redirect_to(user_path(assigns(:user)))
       end
       
       it "should have a welcome message" do
@@ -76,9 +76,8 @@ describe UsersController do
     end
     
     it "should be successful" do
-      visit user_path(@user)
-      #get :show, :id => @user
-      page.status_code.should == 200
+      get :show, :id => @user
+      response.should be_success
     end
     
     it "should find the right user" do
@@ -87,20 +86,18 @@ describe UsersController do
     end
     
     it "should have the right title" do
-      visit user_path(@user)
-      #visit :show, :id => @user
-      page.should have_css("title", :text => @user.name)
+      get :show, :id => @user
+      response.should have_selector("title", :content => @user.name)
     end
     
     it "should include the user's name" do
-      visit user_path(@user)
-      #get :show, :id => @user
-      page.should have_css("h1", :text => @user.name)
+      get :show, :id => @user
+      response.should have_selector("h1", :content => @user.name)
     end
     
     it "should have a profile image" do
       get :show, :id => @user
-      page.should have_css("h1>img", :class => "gravatar")
+      response.should have_selector("h1>img", :class => "gravatar")
     end
   end
 

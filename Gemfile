@@ -6,7 +6,8 @@ gem 'gravatar_image_tag', '0.1.0'
 
 group :development, :test do
   gem 'rspec-rails', '>= 2.0.0.beta.20'
-  gem 'capybara'
+  #gem 'capybara'
+  gem 'webrat'
   gem 'annotate-models', '1.0.4'
   gem 'factory_girl_rails', '1.0'
 end

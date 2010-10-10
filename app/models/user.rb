@@ -61,10 +61,9 @@ class User < ActiveRecord::Base
     user = find_by_id(id)
     (user && user.salt == cookie_salt) ? user : nil
   end
-  
+
   def feed
-    # This is preliminary. See Chapter 12 for the full implementation.
-    Micropost.where("user_id = ?", id)
+    Micropost.from_users_followed_by(self)
   end
 
   def following?(followed)

@@ -12,6 +12,7 @@ group :development, :test do
   gem 'annotate-models', '1.0.4'
   gem 'factory_girl_rails', '1.0'
   gem 'faker', '0.3.1'
+  gem 'rcov'
 end
 
 #group :test do
